@@ -1,9 +1,6 @@
 # Mockingbird (v1.0.0)
 Detect ad blockers and take actions with a simple standalone script.
 ----------------------
-
-Standalone JavaScript plugin that let's you detect your users using ad blockers and show messages according to your preferences, with many other options.
-
 This is an on-line example: http://jsfiddle.net/retargetly/9vsha32h/
 
 Also check the example folder, with a really simple code snippet.
@@ -15,7 +12,6 @@ Works on the following browsers
 - Opera
 - Safari
 - Internet Explorer (8+)
-
 
 ##Installation
 
