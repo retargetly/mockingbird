@@ -4,47 +4,81 @@
 	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	    <style type="text/css">
 	    	html {height:100%;}
-	    	body {min-width:400px;min-height:610px;height:100%;position:relative;margin:0;padding:0;}
+	    	body {min-width:728px;min-height:610px;height:100%;position:relative;margin:0;padding:0;}
 	    	.msg{font-weight:bold;}
 	    	.msg2{color:#FF0000;}
 	    </style>
+	    <script type='text/javascript'>
+			var googletag = googletag || {};
+			googletag.cmd = googletag.cmd || [];
+			(function() {
+				var gads = document.createElement('script');
+				gads.async = true;
+				gads.type = 'text/javascript';
+				var useSSL = 'https:' == document.location.protocol;
+				gads.src = (useSSL ? 'https:' : 'http:') +
+				'//www.googletagservices.com/tag/js/gpt.js';
+				var node = document.getElementsByTagName('script')[0];
+				node.parentNode.insertBefore(gads, node);
+			})();
+		</script>
+
+		<script type='text/javascript'>
+			googletag.cmd.push(function() {
+				googletag.defineSlot('/47388120/test_ad_1', [728, 90], 'div-gpt-ad-1450125646903-0').addService(googletag.pubads());
+				googletag.defineSlot('/47388120/test_ad_2', [120, 240], 'div-gpt-ad-1450221669589-0').addService(googletag.pubads());
+				googletag.defineSlot('/47388120/test_ad_3', [120, 240], 'div-gpt-ad-1450221805127-0').addService(googletag.pubads());
+				googletag.pubads().enableSingleRequest();
+				googletag.enableServices();
+			});
+		</script>
 	    <script type="text/javascript" src="../mockingbird.js"></script>
 	    <script type="text/javascript">
 			mockingbird.adsBlocked({
-				msg:'We live from Ads, help us to protect our content by disabling the ad blocker for our site.',
-				msgClass:'msg',
-
-				selector: '.container3,.container4',
-				
-				replaceContents: true,
+				containers: [{
+					img: 'top_img.png',
+					link: 'http://retargetly.com/#top',
+					title: 'Get me there!',
+					replaceContents: true,
+					selector: '.container1'
+				},{
+					// img: '21589c.png',
+					// link: 'http://retargetly.com/#top2',
+					selector: '.container2,.container3',
+					msg:'We live from Ads, help us to protect our content by disabling the ad blocker for our site.',
+					msgClass:'msg',
+					replaceContents: true,
+				}],
 				
 				handler: function() {
-		    		console.log("Ad Blocker detected")
+					console.log("Ad Blocker detected")
 				}
 			})
 	    </script>
 	</head>
 	<body>
-		<div class="container1" style="position:absolute;left:0;top:0;width:150px;height:300px;background:#32F1F1;">
-			<script type="text/javascript">
-				mockingbird.adsBlocked({
-					msg:'This is a particular message for the parent container',
-					msgClass: 'msg2',
-					replaceContents: true
-				})
-		    </script>
-			container1
+		<div class="container1" style="margin:0 auto;width:728px;height:90px;background:#000;">
+			<div id="div-gpt-ad-1450125646903-0" style="height:90px; width:728px;">
+				<script type='text/javascript'>
+				googletag.cmd.push(function() { googletag.display('div-gpt-ad-1450125646903-0'); });
+				</script>
+			</div>
 		</div>
 
-		<div class="container2" style="position:absolute;right:0;top:0;width:150px;height:300px;background:#F21111;">
-		    container2
+		<div class="container2" style="position:absolute;left:0;top:120px;width:120px;height:240px;background:#21589c;">
+			<div id='div-gpt-ad-1450221669589-0' style='height:240px; width:120px;'>
+				<script type='text/javascript'>
+					googletag.cmd.push(function() { googletag.display('div-gpt-ad-1450221669589-0'); });
+				</script>
+			</div>
 		</div>
-		<div class="container3" style="position:absolute;left:0;bottom:0;width:150px;height:300px;background:#Fa51b2;">
-			container3
+		<div class="container3" style="position:absolute;right:0;top:120px;width:120px;height:240px;background:#21589c;">
+			<div id='div-gpt-ad-1450221805127-0' style='height:240px; width:120px;'>
+				<script type='text/javascript'>
+					googletag.cmd.push(function() { googletag.display('div-gpt-ad-1450221805127-0'); });
+				</script>
+			</div>
 		</div>
 
-		<div class="container4" style="position:absolute;right:0;bottom:0;width:150px;height:300px;background:#F1A332;">
-			container4
-		</div>
 	</body>
 </html>

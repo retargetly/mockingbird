@@ -1,5 +1,6 @@
 var mockingbird = (function () {
     var adb = 0;
+	
     var callbacks = []
 
     domReady()
@@ -14,51 +15,45 @@ var mockingbird = (function () {
     		var s_fn = null
 
     		var fn = obj.handler || null
-    		var selector = obj.selector || null
+    		var containers = obj.containers || null
+    		var selector
 
-    		if(selector)
+    		if(containers)
     		{
     			s_fn = function()
 	    		{
 				    docReady(function(){
-				    	var cs = []
+		    			for(var i=0;i<containers.length;i++)
+		    			{
+		    				selector = containers[i].selector
 
-				    	if(typeof jQuery != "undefined")
-				    	{
-				    		if(!(selector instanceof jQuery))
-							{
-			    				selector = jQuery(selector)
+				    		if(selector)
+				    		{
+						    	var cs = getContainers(selector)
+
+							    for(var j=0;j<cs.length;j++)
+						    	{
+						    		var sp = null
+
+						    		if(typeof containers[i].img === "string" && typeof containers[i].link === "string")
+						    		{
+						    			sp = getA(containers[i].img,containers[i].link,containers[i].title)
+						    		}
+						    		else if(typeof containers[i].msg === "string")
+						    		{
+						    			sp = createMsg(containers[i].msg,containers[i].msgClass)
+						    		}
+
+						    		if(sp)
+						    		{
+										addHtml(cs[j],sp,containers[i].replaceContents)
+						    		}
+
+						    	}
 				    		}
-
-			    			for(var i=0;i<selector.length;i++)
-			    			{
-			    				cs.push(selector[i])
-			    			}
-				    	}
-				    	else
-				    	{
-				    		cs = document.querySelectorAll(selector)
-				    	}
-
-				    	for(var i=0;i<cs.length;i++)
-				    	{
-				    		var sp = createMsg(obj.msg,obj.msgClass)
-
-				    		addMsg(cs[i],sp,obj.replaceContents)
-				    	}
-
+			    		}
 				    })
-	    		}
-    		}
-    		else
-    		{
-				var parentTag = getParentTag()
-
-				s_fn = function(){
-					var sp = createMsg(obj.msg,obj.msgClass)
-
-					addMsg(parentTag,sp,obj.replaceContents)
-				}
+    			}
     		}
 
     		if(adb == 1) //ad blocker detected
@@ -86,6 +81,30 @@ var mockingbird = (function () {
     	callbacks.push(fn)
 
     	return
+    }
+
+    function getContainers(selector)
+    {
+    	var cs = []
+
+    	if(typeof jQuery != "undefined")
+    	{
+    		if(!(selector instanceof jQuery))
+			{
+				selector = jQuery(selector)
+    		}
+
+			for(var i=0;i<selector.length;i++)
+			{
+				cs.push(selector[i])
+			}
+    	}
+    	else
+    	{
+    		cs = document.querySelectorAll(selector)
+    	}
+
+    	return cs
     }
 
     function createMsg(msg,msgClass)
@@ -127,8 +146,6 @@ var mockingbird = (function () {
 				setTimeout(function() {
 					if(elem.offsetWidth==0 && elem.offsetHeight==0)
 					{
-						console.log('executing callbacks because of elemnet offset')
-
 						executeCallbacks()
 					}
 					else
@@ -152,7 +169,6 @@ var mockingbird = (function () {
 				if(this.status == 0)
 				{
 					adb = 1
-					console.log('executing callbacks because of xhr call')
 					executeCallbacks()
 				}
 				else
@@ -231,9 +247,24 @@ var mockingbird = (function () {
 		})("docReady", window);
 	}
 
-	function addMsg(cnt,sp,replace)
+	function getA(img,link,title)
 	{
-		if(typeof replace != "undefined" && replace == true)
+		var objImg = new Image()
+		objImg.alt=''
+		objImg.src=img
+
+		var a = document.createElement("a");
+		a.appendChild(objImg);
+		a.href=link
+		a.title= title || 'Link'
+		a.target='_blank'
+
+		return a
+	}
+
+	function addHtml(cnt,sp,replace)
+	{
+		if(typeof replace == "undefined" || replace == true)
 			cnt.innerHTML = ''
 
 		cnt.appendChild(sp)
@@ -248,4 +279,3 @@ var mockingbird = (function () {
 	}
 
 })();
-

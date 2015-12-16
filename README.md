@@ -1,4 +1,5 @@
-# Mockingbird (v1.0.0)
+![mockingbird](mockingbird-logo.png?raw=true "Mockingbird")
+# Mockingbird (v1.0.1)
 Detect ad blockers and take actions with a simple standalone script.
 ----------------------
 This is an on-line example: http://jsfiddle.net/retargetly/9vsha32h/
@@ -23,20 +24,44 @@ Just download mockingbird.js (or mockingbird.min.js) and add it to your website.
 if(mockingbird)
 {
 	mockingbird.adsBlocked({
-		msg:'We live from Ads, help us to protect our content by disabling the ad blocker for our site.', //simple message that will be displayed if user has ad blocker
-
-		msgClass:'msg', //custom class for the message that will be displayed
-
-		selector: '.container3,.container4', // Selector. This will run jquery if available, or document.querySelectorAll. If selector is not present, the message will be present on the parent container from where this script is executed
-		
-		replaceContents: true, //true if you want to delete all contents within the containers given by selector
+		containers: [{
+			img: 'top_img.png',
+			link: 'http://retargetly.com/#top',
+			title: 'Get me there!',
+			replaceContents: true,
+			selector: '.container1'
+		},{
+			// img: '21589c.png',
+			// link: 'http://retargetly.com/#top2',
+			selector: '.container2,.container3',
+			msg:'We live from Ads, help us to protect our content by disabling the ad blocker for our site.',
+			msgClass:'msg',
+			replaceContents: true,
+		}],
 		
 		handler: function() {
 			console.log("Ad Blocker detected")
-		} // callback function to be executed after detecting that ad blocker is present
+		}
 	})
 }
 ```
+
+## Explanation
+
+Anywhere on the html of your site you can initiate mockingbird script with the method adsBlocked. It receives an object which can have the following properties:
+
+* containers [array]
+This is an array of Ads containers. Each ad container will be an object with the following properties:
+    * selector: [string|jQueryObject] - Default: null -> css selector that will match containers. It is possible for this to be a jQuery object like $('.div1')
+    * img: [string] (optional) - Default: null -> relative or absolute url PATH of the image that will replace the Ad if ad blocker enabled
+    * link: [string] (optional) - Default: null -> full url of the ad destination
+    * title: [string] (optional) - Default: 'link' -> title of the <a> tag
+    * replaceContents: [boolean] (optional) - Default: true -> will replace all the content of the containers that match the selector
+    * msg: [string] (optional) - Default: null -> The message to be displayed if ad blocker enabled
+    * msgClass: [string] (optional) - Default: null -> The class of the span that will hold the message
+
+* handler [function] (optional) - Default null -> Handler to be executed if user has ad blocker enabled
+
 
 ## Description
 
