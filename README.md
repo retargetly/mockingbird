@@ -2,7 +2,7 @@
 # Mockingbird (v1.0.1)
 Detect ad blockers and take actions with a simple standalone script.
 ----------------------
-This is an on-line example: http://jsfiddle.net/retargetly/9vsha32h/
+This is an on-line example: http://jsfiddle.net/retargetly/9vsha32h/5/
 
 Also check the example folder, with a really simple code snippet.
 
@@ -52,7 +52,7 @@ Anywhere on the html of your site you can initiate mockingbird script with the m
 
 * containers [array]
 This is an array of Ads containers. Each ad container will be an object with the following properties:
-    * selector: [string|jQueryObject] - Default: null -> css selector that will match containers. It is possible for this to be a jQuery object like $('.div1')
+    * selector: [string | jQueryObject] - Default: null -> css selector that will match containers. It is possible for this to be a jQuery object like $('.div1')
     * img: [string] (optional) - Default: null -> relative or absolute url PATH of the image that will replace the Ad if ad blocker enabled
     * link: [string] (optional) - Default: null -> full url of the ad destination
     * title: [string] (optional) - Default: 'link' -> title of the <a> tag
@@ -70,3 +70,8 @@ Mockingbird uses two different ways for detecting ad block. First by containers 
 ## Recomendations
 
 Download the file and change its name from mockingbird to something else so ad blockers won't block the load of the script.
+
+## Next updates
+
+* Add parameter to show popup with a message, and have the possibility to not let the user keep browsing on the site
+* Integration with Retargetly's DMP to get stats about traffic with ad blockers, impressions and clicks counters served to those users, a/b testing of ads and messages, possibility to change messages whithin the platform without changing site code.
