@@ -3,9 +3,10 @@
 Detect ad blockers and take actions with a simple standalone script.
 ----------------------
 This is an on-line fiddle where you can play with the code: http://jsfiddle.net/retargetly/9vsha32h/5/
+
 And this is the on-line web example preview: http://dmp.retargetly.com/mockingbird
 
-Also check the example folder, with a really simple code snippet.
+Also check the example folder, you can download it and test it on your local machine.
 
 Works on the following browsers
 ----------------------
