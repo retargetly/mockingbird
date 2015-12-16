@@ -2,7 +2,8 @@
 # Mockingbird (v1.0.1)
 Detect ad blockers and take actions with a simple standalone script.
 ----------------------
-This is an on-line example: http://jsfiddle.net/retargetly/9vsha32h/5/
+This is an on-line fiddle where you can play with the code: http://jsfiddle.net/retargetly/9vsha32h/5/
+And this is the on-line web example preview: http://dmp.retargetly.com/mockingbird
 
 Also check the example folder, with a really simple code snippet.
 
@@ -52,6 +53,7 @@ Anywhere on the html of your site you can initiate mockingbird script with the m
 
 * containers [array]
 This is an array of Ads containers. Each ad container will be an object with the following properties:
+
     * selector: [string | jQueryObject] - Default: null -> css selector that will match containers. It is possible for this to be a jQuery object like $('.div1')
     * img: [string] (optional) - Default: null -> relative or absolute url PATH of the image that will replace the Ad if ad blocker enabled
     * link: [string] (optional) - Default: null -> full url of the ad destination
@@ -62,6 +64,7 @@ This is an array of Ads containers. Each ad container will be an object with the
 
 * handler [function] (optional) - Default null -> Handler to be executed if user has ad blocker enabled
 
+You have to put either img and link properties, or msg property, one of them is mandatory for the plugin to work. If image is provided then link should be provided as well.
 
 ## Description
 
@@ -73,5 +76,5 @@ Download the file and change its name from mockingbird to something else so ad b
 
 ## Next updates
 
-* Add parameter to show popup with a message, and have the possibility to not let the user keep browsing on the site
+* Add parameter to show popup with a message, and have the possibility to not let the user keep browsing on the site.
 * Integration with Retargetly's DMP to get stats about traffic with ad blockers, impressions and clicks counters served to those users, a/b testing of ads and messages, possibility to change messages whithin the platform without changing site code.
