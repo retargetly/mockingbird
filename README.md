@@ -1,7 +1,8 @@
 ![mockingbird](mockingbird-logo.png?raw=true "Mockingbird")
 # Mockingbird (v1.0.2)
-Detect ad blockers and take actions with a simple standalone script.
-----------------------
+
+##Detect ad blockers and take actions with a simple standalone script.
+
 This is an on-line fiddle where you can play with the code: http://jsfiddle.net/retargetly/9vsha32h/6/
 
 And this is the on-line web example preview: http://dmp.retargetly.com/mockingbird
@@ -9,12 +10,11 @@ And this is the on-line web example preview: http://dmp.retargetly.com/mockingbi
 Also check the example folder, you can download it and test it on your local machine.
 
 ##Description
-----------------------
 
 Mockingbird is an open source plugin for detecting users with ad blockers that navigate your site, and show them different messages, or even static advertising using your own servers as the ad server.
 
-Works on the following browsers
-----------------------
+##Works on the following browsers
+
 - Chrome
 - Firefox
 - Opera
@@ -26,7 +26,7 @@ Works on the following browsers
 Just download mockingbird.js (or mockingbird.min.js) and add it to your website. Then execute the only method "adsBlocked" with its parameters upon your desire.
 
 ##Javascript code example
----------------------
+
 ```javascript
 if(mockingbird)
 {
