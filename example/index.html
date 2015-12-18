@@ -46,10 +46,25 @@
 					// link: 'http://retargetly.com/#top2',
 					selector: '.container2,.container3',
 					msg:'We live from Ads, help us to protect our content by disabling the ad blocker for our site.',
-					msgClass:'msg',
+					classes: {
+						container:'cnt',
+						msg:'msg',
+					},
 					replaceContents: true,
 				}],
-				
+				popup: {
+					title: 'WARNING',
+					msg: '<strong>Please</strong> disable your ad blocker',
+					buttonLabel: 'Keep browsing',
+					type: 'small',
+					classes: {
+						title: '',
+						msg: '',
+						container: '',
+						exitButton: ''
+					},
+					exitButton: true
+				},
 				handler: function() {
 					console.log("Ad Blocker detected")
 				}
