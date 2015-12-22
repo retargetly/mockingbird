@@ -3,6 +3,8 @@ var mockingbird = (function () {
 	
     var callbacks = []
 
+    var handlerFn = null
+
     domReady()
 
     dadb()
@@ -14,7 +16,7 @@ var mockingbird = (function () {
 
     		var fn = null
 
-    		xqfn(obj.handler)
+    		xqfn(obj.handler,true)
     		var containers = obj.containers || null
     		var popup = obj.popup || null
     		var selector
@@ -223,17 +225,28 @@ var mockingbird = (function () {
 		return div.firstChild
     }
 
-    function xqfn(fn)
+    function xqfn(fn,handler)
     {
-    	if(adb == 1) //ad blocker detected
+    	if(adb==0)
 		{
-			if(typeof fn == "function")
-				fn()
+			if(handler)
+				handlerFn = fn
+			else
+				addCallback(fn)
 		}
-		else if(adb==0)
+		else
 		{
-			addCallback(fn)
+			if(handler && typeof fn == "function")
+			{
+				fn(adb==1)
+			}
+			else if(adb == 1) //ad blocker detected
+			{
+				if(typeof fn == "function")
+					fn()
+			}
 		}
+		
     }
 
     function addCallback(fn)
@@ -309,14 +322,12 @@ var mockingbird = (function () {
 				setTimeout(function() {
 					if(elem.offsetWidth==0 && elem.offsetHeight==0)
 					{
-						executeCallbacks()
+						executeCallbacks(true)
 					}
 					else
 					{
 						var url = '/ads/advertise/adsense/banner/smart/atlas/appnexus/adserver/ads.json?adsize=300x250&advid='+parseInt(Math.random()*100000000)
 						var xhr = cors('GET', url, false);
-						if(xhr)
-							xhr.send()
 					}
 				}, 20); //20ms to give time to browser to add blockers filters
 			}
@@ -332,12 +343,13 @@ var mockingbird = (function () {
 				if(this.status == 0)
 				{
 					adb = 1
-					executeCallbacks()
 				}
 				else
 				{
 					adb = -1
 				}
+
+				executeCallbacks(adb==1)
 			}
 		}
 
@@ -359,7 +371,10 @@ var mockingbird = (function () {
 			xhr = null;
 		}
 
-		return xhr;
+		if(xhr)
+			xhr.send()
+
+		return
 	}
 
 	function domReady()
@@ -433,12 +448,18 @@ var mockingbird = (function () {
 		cnt.appendChild(sp)
 	}
 
-	function executeCallbacks()
+	function executeCallbacks(blocked)
 	{
-		for(var i=0;i<callbacks.length;i++)
+		if(blocked)
 		{
-			callbacks[i]()
+			for(var i=0;i<callbacks.length;i++)
+			{
+				callbacks[i]()
+			}
 		}
+
+		if(handlerFn)
+			handlerFn(blocked)
 	}
 
 })();

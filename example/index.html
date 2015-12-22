@@ -44,7 +44,7 @@
 				},{
 					// img: '21589c.png',
 					// link: 'http://retargetly.com/#top2',
-					selector: '.container2,.container3',
+					selector: '.container2',
 					msg:'We live from Ads, help us to protect our content by disabling the ad blocker for our site.',
 					classes: {
 						container:'cnt',
@@ -65,8 +65,15 @@
 					},
 					exitButton: true
 				},
-				handler: function() {
-					console.log("Ad Blocker detected")
+				handler: function(blocked) {
+					if(blocked)
+					{
+						console.log("Ad Blocker detected")
+					}
+					else
+					{
+						console.log("Not using ad blocker")
+					}
 				}
 			})
 	    </script>

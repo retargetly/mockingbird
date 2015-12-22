@@ -1,5 +1,5 @@
 ![mockingbird](mockingbird-logo.png?raw=true "Mockingbird")
-# Mockingbird (v1.0.2)
+# Mockingbird (v1.0.3)
 
 ##Detect ad blockers and take actions with a simple standalone script.
 
@@ -61,8 +61,11 @@ if(mockingbird)
 			},
 			exitButton: true
 		},
-		handler: function() {
-			console.log("Ad Blocker detected")
+		handler: function(blocked) {
+			if(blocked)
+				console.log("Ad Blocker detected")
+			else
+				console.log("User not using an Ad blocker")
 		}
 	})
 }
@@ -115,7 +118,7 @@ This is the popup object that will define the popup behaviour, can be a full pag
         * exitButton: [string] (optional) - Default: null -> [Only for exitButton: true]. Removes default css of popup close button and adds the value as class
 
 
-* handler [function] (optional) - Default null -> Handler to be executed if user has ad blocker enabled
+* handler [function] (optional) - Default null -> Handler to be executed after checking if ad blocker enabled. This function receives one boolean parameter, true if user has an ad blocker, false if not.
 
 You have to put either img and link properties, or msg property, one of them is mandatory for the plugin to work. If image is provided then link should be provided as well.
 
