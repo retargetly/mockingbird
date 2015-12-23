@@ -46,6 +46,11 @@ var mockingbird = (function () {
 						    		{
 						    			sp = createMsg(containers[i].msg,containers[i].classes)
 						    		}
+						    		else if(typeof containers[i].src === "string")
+						    		{
+						    			
+						    			resolveCDN(cs[j],containers[i].src,containers[i].replaceContents)
+						    		}
 
 						    		if(typeof containers[i].classes != "undefined" && typeof containers[i].classes.container != "undefined")
 						    			cs[j].className += ' '+containers[i].classes.container
@@ -225,6 +230,21 @@ var mockingbird = (function () {
 		return div.firstChild
     }
 
+    function resolveCDN(cnt,cdn,replace)
+    {
+    	var cb = function(obj)
+    	{
+	    	if(typeof obj.img == "string" && typeof obj.title == "string" && typeof obj.url == "string")
+	    	{
+	    		var sp = getA(obj.img,obj.url,obj.title)
+
+	    		addHtml(cnt,sp,replace)
+	    	}
+    	}
+
+    	cdnData('GET',cdn,true,cb)
+    }
+
     function xqfn(fn,handler)
     {
     	if(adb==0)
@@ -336,6 +356,62 @@ var mockingbird = (function () {
 
 	}
 
+	function cdnData(method, url, async, callback) {
+		var onReady = function() {
+			if(this.readyState == 4)
+			{
+				if(this.status == 200)
+				{
+					var data;
+				    if (!xhr.responseType || xhr.responseType === "text") {
+				        data = xhr.responseText;
+				    } else if (xhr.responseType === "document") {
+				        data = xhr.responseXML;
+				    } else {
+				        data = xhr.response;
+				    }
+
+				    var ret = null
+
+				    try
+				    {
+				    	ret = JSON.parse(data)
+					}
+					catch(e)
+					{
+						ret = null
+					}
+
+					callback(ret)
+
+					return
+				}
+			}
+		}
+
+		var xhr = new XMLHttpRequest();
+
+		if ("withCredentials" in xhr) {
+			// Check if the XMLHttpRequest object has a "withCredentials" property.
+			// "withCredentials" only exists on XMLHTTPRequest2 objects.
+			xhr.onreadystatechange = onReady
+			xhr.open(method, url, true);
+		} else if (typeof XDomainRequest != "undefined") {
+			// Otherwise, check if XDomainRequest.
+			// XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+			xhr = new XDomainRequest();
+			xhr.onreadystatechange = onReady
+			xhr.open(method, url);
+		} else {
+			// Otherwise, CORS is not supported by the browser.
+			xhr = null;
+		}
+
+		if(xhr)
+			xhr.send()
+
+		return
+	}
 	function cors(method, url, async) {
 		var onReady = function() {
 			if(this.readyState == 4)
