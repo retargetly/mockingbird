@@ -71,6 +71,7 @@ if(mockingbird)
 			},
 			exitButton: true
 		},
+		requestValidation: false,
 		handler: function(blocked) {
 			if(blocked)
 				console.log("Ad Blocker detected")
