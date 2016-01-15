@@ -7,7 +7,7 @@
 
 This is an on-line fiddle where you can play with the code: http://jsfiddle.net/retargetly/9vsha32h/
 
-And this is the on-line web example preview: http://dmp.retargetly.com/mockingbird
+And this is the on-line web example preview: http://mockingbird.retargetly.com/example/
 
 Also check the example folder, you can download it and test it on your local machine.
 
