@@ -5,6 +5,8 @@ var mockingbird = (function () {
 
     var handlerFn = null
 
+    var enabledHttpRequest = false;
+
     domReady()
 
     dadb()
@@ -20,6 +22,8 @@ var mockingbird = (function () {
     		var containers = obj.containers || null
     		var popup = obj.popup || null
     		var selector
+
+    		enabledHttpRequest = obj.requestValidation || false
 
     		if(containers)
     		{
@@ -344,11 +348,13 @@ var mockingbird = (function () {
 					{
 						executeCallbacks(true)
 					}
-					else
+					else if(enabledHttpRequest)
 					{
 						var url = '/ads/advertise/adsense/banner/smart/atlas/appnexus/adserver/ads.json?adsize=300x250&advid='+parseInt(Math.random()*100000000)
 						var xhr = cors('GET', url, false);
 					}
+					else
+						executeCallbacks(false)
 				}, 20); //20ms to give time to browser to add blockers filters
 			}
 				

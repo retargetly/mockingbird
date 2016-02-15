@@ -36,7 +36,7 @@
 				googletag.enableServices();
 			});
 		</script>
-	    <script type="text/javascript" src="../mockingbird.js"></script>
+	    <script type="text/javascript" src="mockingbird.min.js"></script>
 	    <script type="text/javascript">
 			mockingbird.adsBlocked({
 				containers: [{
@@ -80,6 +80,7 @@
 					},
 					exitButton: true
 				},
+				requestValidation: false,
 				handler: function(blocked) {
 					if(blocked)
 					{

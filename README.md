@@ -7,7 +7,7 @@
 
 This is an on-line fiddle where you can play with the code: http://jsfiddle.net/retargetly/9vsha32h/
 
-And this is the on-line web example preview: http://dmp.retargetly.com/mockingbird
+And this is the on-line web example preview: http://mockingbird.retargetly.com/example/
 
 Also check the example folder, you can download it and test it on your local machine.
 
@@ -71,6 +71,7 @@ if(mockingbird)
 			},
 			exitButton: true
 		},
+		requestValidation: false,
 		handler: function(blocked) {
 			if(blocked)
 				console.log("Ad Blocker detected")
@@ -129,13 +130,15 @@ This is the popup object that will define the popup behaviour, can be a full pag
         * exitButton: [string] (optional) - Default: null -> [Only for exitButton: true]. Removes default css of popup close button and adds the value as class
 
 
-* handler [function] (optional) - Default null -> Handler to be executed after checking if ad blocker enabled. This function receives one boolean parameter, true if user has an ad blocker, false if not
+* handler [function] (optional) - Default: null -> Handler to be executed after checking if ad blocker enabled. This function receives one boolean parameter, true if user has an ad blocker, false if not
+
+* requestValidation [boolean] (optional) - Default: false -> Enables/disables an http request to a local fake url with common adds tags. This ensures a secondary ad blocker detection.
 
 You have to put either img and link properties, or msg property, one of them is mandatory for the plugin to work. If image is provided then link should be provided as well.
 
 ## How it works
 
-Mockingbird uses two different ways for detecting ad block. First by containers with common ads classes, and then it falls back into a request to a local fake url with many common adds tags.
+Mockingbird uses two different ways for detecting ad block. First by containers with common ads classes, and then it optionally falls back into a request to a local fake url with many common adds tags.
 
 ## Recomendations
 
