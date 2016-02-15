@@ -29,6 +29,9 @@
 				googletag.defineSlot('/47388120/test_ad_1', [728, 90], 'div-gpt-ad-1450125646903-0').addService(googletag.pubads());
 				googletag.defineSlot('/47388120/test_ad_2', [120, 240], 'div-gpt-ad-1450221669589-0').addService(googletag.pubads());
 				googletag.defineSlot('/47388120/test_ad_3', [120, 240], 'div-gpt-ad-1450221805127-0').addService(googletag.pubads());
+				googletag.defineSlot('/47388120/test_ad_4', [300, 250], 'div-gpt-ad-1453907969103-0').addService(googletag.pubads());
+				googletag.defineSlot('/47388120/test_ad_5', [300, 250], 'div-gpt-ad-1453908131096-0').addService(googletag.pubads());
+
 				googletag.pubads().enableSingleRequest();
 				googletag.enableServices();
 			});
@@ -37,9 +40,10 @@
 	    <script type="text/javascript">
 			mockingbird.adsBlocked({
 				containers: [{
-					img: 'top_img.png',
-					link: 'http://retargetly.com/#top',
-					title: 'Get me there!',
+					// img: 'top_img.png',
+					// link: 'http://retargetly.com/#top',
+					// title: 'Get me there!',
+					src: 'https://dnzhvivadqvt4.cloudfront.net/su5cwd7xhlhlt8u2xqgo/t3tv6e.json',
 					replaceContents: true,
 					selector: '.container1'
 				},{
@@ -53,10 +57,10 @@
 					},
 					replaceContents: true,
 				},{
-					// img: '21589c.png',
-					// link: 'http://retargetly.com/#top2',
+					img: '21589c.png',
+					link: 'http://retargetly.com/#top2',
 					selector: '.container3',
-					src:'https://dnzhvivadqvt4.cloudfront.net/setup/test.json',
+					// src:'https://s3-sa-east-1.amazonaws.com/ox8gesu8uudy4mt5tk2zkwj0pjea0v/ght8ev.json',
 					classes: {
 						container:'cnt3',
 						msg:'msg',
@@ -109,6 +113,23 @@
 			<div id='div-gpt-ad-1450221805127-0' style='height:240px; width:120px;'>
 				<script type='text/javascript'>
 					googletag.cmd.push(function() { googletag.display('div-gpt-ad-1450221805127-0'); });
+				</script>
+			</div>
+		</div>
+
+		<div class="container4" style="position:absolute;right:0;top:380px;width:300px;height:250px;background:#21589c;">
+			<!-- /47388120/test_ad_4 -->
+			<div id='div-gpt-ad-1453907969103-0' style='height:250px; width:300px;'>
+				<script type='text/javascript'>
+					googletag.cmd.push(function() { googletag.display('div-gpt-ad-1453907969103-0'); });
+				</script>
+			</div>
+		</div>
+		<div class="container5" style="position:absolute;left:0;top:380px;width:300px;height:250px;background:#21589c;">
+			<!-- /47388120/test_ad_5 -->
+			<div id='div-gpt-ad-1453908131096-0' style='height:250px; width:300px;'>
+				<script type='text/javascript'>
+					googletag.cmd.push(function() { googletag.display('div-gpt-ad-1453908131096-0'); });
 				</script>
 			</div>
 		</div>
