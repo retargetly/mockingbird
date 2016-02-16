@@ -401,13 +401,25 @@ var mockingbird = (function () {
 			// Check if the XMLHttpRequest object has a "withCredentials" property.
 			// "withCredentials" only exists on XMLHTTPRequest2 objects.
 			xhr.onreadystatechange = onReady
-			xhr.open(method, url, true);
+			try{
+				xhr.open(method, url, true)
+			}
+			catch(e)
+			{
+				return
+			}
 		} else if (typeof XDomainRequest != "undefined") {
 			// Otherwise, check if XDomainRequest.
 			// XDomainRequest only exists in IE, and is IE's way of making CORS requests.
 			xhr = new XDomainRequest();
 			xhr.onreadystatechange = onReady
-			xhr.open(method, url);
+			try{
+				xhr.open(method, url);
+			}
+			catch(e)
+			{
+				return
+			}
 		} else {
 			// Otherwise, CORS is not supported by the browser.
 			xhr = null;
@@ -441,13 +453,29 @@ var mockingbird = (function () {
 			// Check if the XMLHttpRequest object has a "withCredentials" property.
 			// "withCredentials" only exists on XMLHTTPRequest2 objects.
 			xhr.onreadystatechange = onReady
-			xhr.open(method, url, true);
+			try{
+				xhr.open(method, url, true)
+			}
+			catch(e)
+			{
+				adb = 1
+				executeCallbacks(true)
+				return
+			}
 		} else if (typeof XDomainRequest != "undefined") {
 			// Otherwise, check if XDomainRequest.
 			// XDomainRequest only exists in IE, and is IE's way of making CORS requests.
 			xhr = new XDomainRequest();
 			xhr.onreadystatechange = onReady
-			xhr.open(method, url);
+			try{
+				xhr.open(method, url);
+			}
+			catch(e)
+			{
+				adb = 1
+				executeCallbacks(true)
+				return
+			}
 		} else {
 			// Otherwise, CORS is not supported by the browser.
 			xhr = null;
