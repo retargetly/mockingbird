@@ -1,9 +1,10 @@
 <p align="center">
 	<img src="mockingbird-logo.png?raw=true" alt="mockingbird" />
 </p>
+
 # Mockingbird (v1.1.0)
 
-##Detect ad blockers and take actions with a simple standalone script.
+## Detect ad blockers and take actions with a simple standalone script.
 
 This is an on-line fiddle where you can play with the code: http://jsfiddle.net/retargetly/9vsha32h/
 
